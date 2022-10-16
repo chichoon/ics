@@ -1,0 +1,16 @@
+FROM alpine:3.15
+#  penultimate stable version of Alpine Linux => 가장 최신에서 두 번째 버전을 사용하라는 뜻
+# apt-get 을 못 씀
+# gnu 대신 busybox를 쓰기 때문에 gnu 옵션들을 못 씀
+# busybox 는 모든 명령어가 하나의 실행 파일에 들어있기 때문에 용량이 줄어듦 (중복 파일 등이 다 사라지기 때문)
+
+# 도커에서는 모든 명령이 sudo 로 들어가기 때문에 (root 계정임) sudo를 붙일 필요가 없다
+
+# TLS란? Transportation Layer Security
+# 버전을 높일 수록 보안성이 높아지지만 호환성을 위해 버전을 낮추는 경우가 있음
+# 버전별로 보안에 대한 규격이 다르다 => 1.2 이상을 사용해야 하고, 1.2와 1.3을 같이 사용하면 옛날 버전까지 커버할 수 있음
+
+
+RUN apk add nginx \
+	nginx-php-wordpress \
+
