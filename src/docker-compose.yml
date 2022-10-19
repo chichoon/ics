@@ -2,7 +2,7 @@
 # 간단하게 누군가가 잘 만들어 준 이미지들을 조합해서 서버를 간단하게 구축할 수 있다
 # 설정까지 이미지에서 다 할 수 있다
 
-# pid 1은 모든 프로세스의 부모 프로세스, 가장 첫번째로 실행되는 프로세스
+# pid 1은 모든 프로세스의 부모 프로세스, 가장 첫번째로 실행되는 프로세스 (평가지에 있음)
 # 따라서 pid 1d을 종료하면 하위에 있는 모든 프로세스가 같이 종료된다는 뜻
 # 만약 어떤 프로세스가 pid 1 하위 프로세스로 들어가있지 않으면, 마지막에 pid 1 프로세스가 종료되어도 좀비 프로세스로 남는다
 # https://cloud.google.com/architecture/best-practices-for-building-containers?hl=ko#problem_1_how_the_linux_kernel_handles_signals
@@ -10,13 +10,13 @@
 services:
   # 서비스의 이름
   nginx:
-    build: ./requirements/nginx
-    ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌
+    build: ./requirements/nginx # 이 서비스를 빌드하기 위한 설정 파일 (dockerfile)
+    ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌 (포트포워딩)
       # ports는 바깥에서도 접근이 가능함
-      - "443:443"
+      - 443:443
   wordpress:
     build: ./requirements/wordpress
     expose:
-      - "3306" # 네트워크 내부에서의 접근 포트
+      - 3306 # 네트워크 내부에서의 접근 포트
   mariadb:
     build: ./requirements/mariadb
