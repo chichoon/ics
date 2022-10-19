@@ -1,1 +1,2 @@
 # wordpress cli 를 쓰세요
+FROM alpine:3.15
