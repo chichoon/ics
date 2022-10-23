@@ -3,7 +3,7 @@
 # 설정까지 이미지에서 다 할 수 있다
 
 # pid 1은 모든 프로세스의 부모 프로세스, 가장 첫번째로 실행되는 프로세스 (평가지에 있음)
-# 따라서 pid 1d을 종료하면 하위에 있는 모든 프로세스가 같이 종료된다는 뜻
+# 따라서 pid 1을 종료하면 하위에 있는 모든 프로세스가 같이 종료된다는 뜻
 # 만약 어떤 프로세스가 pid 1 하위 프로세스로 들어가있지 않으면, 마지막에 pid 1 프로세스가 종료되어도 좀비 프로세스로 남는다
 # https://cloud.google.com/architecture/best-practices-for-building-containers?hl=ko#problem_1_how_the_linux_kernel_handles_signals
 
@@ -13,21 +13,44 @@ services:
     build:
       context: ./requirements/nginx # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile) 의 위치
       dockerfile: ./Dockerfile # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile)
+    restart: always
     ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌 (포트포워딩)
       # ports는 바깥에서도 접근이 가능함
-      - 443:443
+      - "443:443"
+    depends_on:
+      - wordpress
   wordpress:
     build:
       context: ./requirements/wordpress
       dockerfile: ./Dockerfile
+    restart: always
     expose:
-      - 3306 # 네트워크 내부에서의 접근 포트
+      - "3306" # 네트워크 내부에서의 접근 포트
+      # expose 는 해당 네트워크 내의 서비스들끼리만 연결 가능
+      # 네트워크 설정이 필요함
+    depends_on:
+      - mariadb
   mariadb:
     build:
       context: ./requirements/mariadb
       dockerfile: ./Dockerfile
+    restart: always
+    expose:
+      - "9000"
+networks:
+  # 네트워크 설정
+  mariadb-network:
+    # MariaDB 네트워크
+    driver: bridge # driver는 host, none, bridge 중 하나
+  wordpress-network:
+    # Wordpress 네트워크
+    driver: bridge
+  nginx-network:
+    # NGINX 네트워크
+    driver: bridge
 
 volumes:
+  # 볼륨 설정
   wordpress-volume:
   # 워드프레스 볼륨
   database-volume:
