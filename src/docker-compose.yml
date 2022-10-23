@@ -10,13 +10,25 @@
 services:
   # 서비스의 이름
   nginx:
-    build: ./requirements/nginx # 이 서비스를 빌드하기 위한 설정 파일 (dockerfile)
+    build:
+      context: ./requirements/nginx # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile) 의 위치
+      dockerfile: ./Dockerfile # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile)
     ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌 (포트포워딩)
       # ports는 바깥에서도 접근이 가능함
       - 443:443
   wordpress:
-    build: ./requirements/wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: ./Dockerfile
     expose:
       - 3306 # 네트워크 내부에서의 접근 포트
   mariadb:
-    build: ./requirements/mariadb
+    build:
+      context: ./requirements/mariadb
+      dockerfile: ./Dockerfile
+
+volumes:
+  wordpress-volume:
+  # 워드프레스 볼륨
+  database-volume:
+  # 데이터베이스 볼륨
