@@ -43,19 +43,14 @@ services:
       - database-volume:/usr/src/volume
 networks:
   # 네트워크 설정
-  mariadb-network:
-    # MariaDB 네트워크
+  mariadb-network: # MariaDB 네트워크
     driver: bridge # driver는 host, none, bridge 중 하나
-  wordpress-network:
-    # Wordpress 네트워크
+  wordpress-network: # Wordpress 네트워크
     driver: bridge
-  nginx-network:
-    # NGINX 네트워크
+  nginx-network: # NGINX 네트워크
     driver: bridge
 
 volumes:
   # 볼륨 설정
-  wordpress-volume:
-  # 워드프레스 볼륨
-  database-volume:
-  # 데이터베이스 볼륨
+  wordpress-volume: # 워드프레스 볼륨
+  database-volume: # 데이터베이스 볼륨
