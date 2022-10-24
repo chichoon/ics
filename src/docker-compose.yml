@@ -28,6 +28,8 @@ services:
       - "3306" # 네트워크 내부에서의 접근 포트
       # expose 는 해당 네트워크 내의 서비스들끼리만 연결 가능
       # 네트워크 설정이 필요함
+    volumes:
+      - wordpress-volume:/usr/src/volume
     depends_on:
       - mariadb
   mariadb:
@@ -37,6 +39,8 @@ services:
     restart: always
     expose:
       - "9000"
+    volumes:
+      - database-volume:/usr/src/volume
 networks:
   # 네트워크 설정
   mariadb-network:
