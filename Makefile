@@ -1,12 +1,12 @@
 # 도커 컴포즈를 돌리는 Makefile
 
 kill:
-	cd src && docker-compose kill
+	cd srcs && docker-compose kill
 
 build:
-	cd src && docker-compose up
+	cd srcs && docker-compose up
 
 down:
-	cd src && docker-compose down
+	cd srcs && docker-compose down
 
 .PHONY: kill build down
