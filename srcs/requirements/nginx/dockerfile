@@ -20,12 +20,20 @@ RUN apt-get update -y && apt-get upgrade -y && \
 RUN	mkdir /etc/nginx/ssl
 # 이거 안하면 ssl 폴더가 없어서 아래 명령어에서 못찾음
 
-RUN openssl req -newkey rsa:2048 -days 365 -nodes -x509 \
+RUN openssl req -newkey rsa:2048 -nodes -x509 \
 	-subj "/C=KR/ST=Seoul/L=Gangnam/O=Gaepodong/OU=42Seoul/CN=jiychoi.42.fr" \
 	-keyout /etc/nginx/ssl/jiychoi.42.fr.key \
 	-out /etc/nginx/ssl/jiychoi.42.fr.crt
-# C: Country code, ST: State or Province, L: Locality, O: Organization, OU: Organization Unit, CN: Common Name (hostname)
 # 키와 인증서 동시에 생성: https://www.ibm.com/docs/ko/api-connect/5.0.x?topic=profiles-generating-self-signed-certificate-using-openssl
+# req: pkcs#10 포맷의 인증서를 생성하고 요청을 처리하는 역할을 한다
+# -newkey: arg에 해당하는 키도 같이 생성한다 (rsa:2048 => rsa, 2048비트)
+# -days: 인증서 만료 기간 (기본값은 30일이기 때문에 명시 X)
+# -nodes: private key가 생성될 경우, 암호화되지 않도록 막는다
+# -x509: certificate request 대신 self-signed 인증서를 생성하며, x509는 인증서와 알고리즘 표준 중 하나이다
+# -subj: 원래 대화형으로 인증 요청 인자를 받아오지만, subj 플래그를 통해 한 줄로 인자를 넣어줄 수 있다
+# -keyout: 인증 키 파일명
+# -out: 인증서 파일명
+# C: Country code, ST: State or Province, L: Locality, O: Organization, OU: Organization Unit, CN: Common Name (hostname)
 
 COPY ./tools/init.sh ./
 # init.sh 파일 이동
