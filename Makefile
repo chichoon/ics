@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 01:23:19 by jiychoi           #+#    #+#              #
-#    Updated: 2022/10/31 01:26:35 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/10/31 01:27:08 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,6 @@ down:
 	cd srcs && docker-compose down
 
 fclean:
-	./fclean.sh
+	chmod 666 ./fclean.sh && ./fclean.sh
 
 .PHONY: kill build down
