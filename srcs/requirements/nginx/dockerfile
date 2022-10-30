@@ -12,8 +12,8 @@ FROM debian:buster
 # 버전별로 보안에 대한 규격이 다르다 => 1.2 이상을 사용해야 하고, 1.2와 1.3을 같이 사용하면 옛날 버전까지 커버할 수 있음
 
 
-RUN apt-get update -y && apt-get upgrade -y &&
-	apt-get install nginx openssl
+RUN apt-get update -y && apt-get upgrade -y && \
+	apt-get -y install nginx openssl
 # -y 플래그는 yes 라는 뜻: apt-get update, upgrade를 할 때 나오는 질문에 자동으로 대답해 줌
 # apt-get update를 통해 가장 최신 버전으로 설치할 수 있게 하기
 
