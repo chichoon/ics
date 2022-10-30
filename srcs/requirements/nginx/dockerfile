@@ -1,6 +1,7 @@
-FROM alpine:3.15
+FROM debian:buster
+
 #  penultimate stable version of Alpine Linux => 가장 최신에서 두 번째 버전을 사용하라는 뜻
-# apt-get 을 못 씀
+# alpine은 apt-get 을 못 씀
 # gnu 대신 busybox를 쓰기 때문에 gnu 옵션들을 못 씀
 # busybox 는 모든 명령어가 하나의 실행 파일에 들어있기 때문에 용량이 줄어듦 (중복 파일 등이 다 사라지기 때문)
 
@@ -11,6 +12,17 @@ FROM alpine:3.15
 # 버전별로 보안에 대한 규격이 다르다 => 1.2 이상을 사용해야 하고, 1.2와 1.3을 같이 사용하면 옛날 버전까지 커버할 수 있음
 
 
-RUN apk add nginx &&
-	nginx -v
+RUN apt-get update -y && apt-get upgrade -y &&
+	apk add nginx openssl
+	# -y 플래그는 yes 라는 뜻: apt-get update, upgrade를 할 때 나오는 질문에 자동으로 대답해 줌
 
+COPY ./tools/init.sh ./
+# init.sh 파일 이동
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default
+# nginx config 파일 경로는 /etc/nginx/sites-available/default
+
+EXPOSE 443
+# Docker-compose에서의 ports는 도커파일 포트와 로컬 포트를 연결, 여기서는 도커파일 포트를 OPEN
+
+ENTRYPOINT ["./init.sh"]
+# 이미지 빌드 후 바로 init.sh 실행
