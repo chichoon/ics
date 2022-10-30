@@ -20,10 +20,10 @@ RUN apt-get update -y && apt-get upgrade -y && \
 RUN	mkdir /etc/nginx/ssl
 # 이거 안하면 ssl 폴더가 없어서 아래 명령어에서 못찾음
 
-RUN openssl genrsa -out /etc/nginx/ssl/jiychoi.42.fr.key 2048 && \
+RUN openssl genrsa -trustout /etc/nginx/ssl/jiychoi.42.fr.key 2048 && \
 	openssl req -new -key /etc/nginx/ssl/jiychoi.42.fr.key \
 	-subj "/C=KR/ST=Seoul/L=Gangnam/O=Gaepodong/OU=42Seoul/CN=jiychoi.42.fr" \
-	-out /etc/nginx/ssl/jiychoi.42.fr.crt
+	-trustout /etc/nginx/ssl/jiychoi.42.fr.crt
 # C: Country code, ST: State or Province, L: Locality, O: Organization, OU: Organization Unit, CN: Common Name (hostname)
 
 COPY ./tools/init.sh ./
