@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 echo "              _
              (_)
@@ -9,4 +9,6 @@ echo "              _
          __/ |
         |___/              "
 
-nginx -g daemon off
+
+
+nginx -g daemon off;
