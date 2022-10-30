@@ -25,7 +25,7 @@ RUN openssl genrsa -out /etc/nginx/ssl/jiychoi.42.fr.key 2048 &&
 
 COPY ./tools/init.sh ./
 # init.sh 파일 이동
-COPY ./conf/nginx.conf /etc/nginx/sites-available/default.conf
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default
 # nginx config 파일 경로는 /etc/nginx/sites-available/default
 
 EXPOSE 443
