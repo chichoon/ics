@@ -14,11 +14,18 @@ FROM debian:buster
 
 RUN apt-get update -y && apt-get upgrade -y &&
 	apk add nginx openssl
-	# -y 플래그는 yes 라는 뜻: apt-get update, upgrade를 할 때 나오는 질문에 자동으로 대답해 줌
+# -y 플래그는 yes 라는 뜻: apt-get update, upgrade를 할 때 나오는 질문에 자동으로 대답해 줌
+# apt-get update를 통해 가장 최신 버전으로 설치할 수 있게 하기
+
+RUN openssl genrsa -out /etc/nginx/ssl/jiychoi.42.fr.key 2048 &&
+	openssl req -new -key /etc/nginx/ssl/jiychoi.42.fr.key \
+	-subj "/C=KR/ST=Seoul/L=Gangnam/O=Gaepodong/OU=42Seoul/CN=jiychoi.42.fr" \
+	-out /etc/nginx/ssl/jiychoi.42.fr.crt
+# C: Country code, ST: State or Province, L: Locality, O: Organization, OU: Organization Unit, CN: Common Name (hostname)
 
 COPY ./tools/init.sh ./
 # init.sh 파일 이동
-COPY ./conf/nginx.conf /etc/nginx/sites-available/default
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default.conf
 # nginx config 파일 경로는 /etc/nginx/sites-available/default
 
 EXPOSE 443
