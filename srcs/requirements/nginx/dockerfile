@@ -36,5 +36,5 @@ EXPOSE 443
 
 RUN chmod 777 ./init.sh
 
-ENTRYPOINT ["./init.sh"]
+ENTRYPOINT ["sh", "-c", "./init.sh"]
 # 이미지 빌드 후 바로 init.sh 실행
