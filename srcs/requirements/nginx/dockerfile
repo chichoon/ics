@@ -25,6 +25,7 @@ RUN openssl req -newkey rsa:2048 -nodes -x509 \
 	-keyout /etc/nginx/ssl/jiychoi.42.fr.key \
 	-out /etc/nginx/ssl/jiychoi.42.fr.crt
 # 키와 인증서 동시에 생성: https://www.ibm.com/docs/ko/api-connect/5.0.x?topic=profiles-generating-self-signed-certificate-using-openssl
+# 각 플래그 해설: https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html
 # req: pkcs#10 포맷의 인증서를 생성하고 요청을 처리하는 역할을 한다
 # -newkey: arg에 해당하는 키도 같이 생성한다 (rsa:2048 => rsa, 2048비트)
 # -days: 인증서 만료 기간 (기본값은 30일이기 때문에 명시 X)
