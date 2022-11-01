@@ -16,7 +16,7 @@ services:
     restart: always
     ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌 (포트포워딩)
       # ports는 바깥에서도 접근이 가능함
-      - "443:443"
+      - "443:443" # HTTPS 전용 포트가 443 포트이다
     depends_on:
       - wordpress
   wordpress:
@@ -36,6 +36,8 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: ./Dockerfile
+    env_file:
+      - "./.env"
     restart: always
     expose:
       - "9000"
