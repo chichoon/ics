@@ -18,10 +18,10 @@ cat /var/lib/mysql/.setup 2> /dev/null;
 # 그와 함께 $? errno에 값이 설정됨
 
 if [ $? -ne 0 ]; then
-    mysql -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB;";
-    mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PW';";
-    mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';";
-    mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PW'; FLUSH PRIVILEGES;"
+    mysql -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB";
+    mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PW'";
+    mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%'";
+    mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PW'"
     mysql $MYSQL_DATABASE -u$MYSQL_ROOT -p$MYSQL_ROOT_PW;
     touch /var/lib/mysql/.setup
 fi
