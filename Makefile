@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 01:23:19 by jiychoi           #+#    #+#              #
-#    Updated: 2022/10/31 01:38:11 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/03 19:22:36 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ down:
 	cd srcs && docker-compose down
 
 fclean:
-	chmod 777 ./fclean.sh && ./fclean.sh
+	docker stop $(docker ps -qa); docker rm $(docker ps -qa);
+	docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q);
+	docker network rm $(docker network ls -q) 2>/dev/null;
+
 
 re: fclean build
 
