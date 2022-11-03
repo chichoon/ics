@@ -20,8 +20,8 @@ cat /var/lib/mysql/.setup 2> /dev/null;
 if [ $? -ne 0 ]; then
     mysql -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB"; # 새로운 DB 생성 (기존에 존재하지 않을 경우)
     mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PW'"; # 유저 생성 (기존에 존재하지 않을 경우)
-    mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PW'; FLUSH PRIVILEGES" # 루트 계정 비밀번호 초기화
     mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DB.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PW'"; # 생성된 유저에 DB의 모든 권한 부여
+    mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PW'; FLUSH PRIVILEGES" # 루트 계정 비밀번호 초기화
     mysql $MYSQL_DB -u$MYSQL_ROOT -p$MYSQL_ROOT_PW; #루트 계정으로 로그인
     touch /var/lib/mysql/.setup
 fi
