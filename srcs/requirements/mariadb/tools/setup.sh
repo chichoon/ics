@@ -23,7 +23,7 @@ if [ $? -ne 0 ]; then
     mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DB.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PW'";
     mysql -e "FLUSH PRIVILEGES"; # 생성된 유저에 DB의 모든 권한 부여
     mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PW'"; # 루트 계정 비밀번호 초기화
-    mysql $MYSQL_DB -u$MYSQL_ROOT -p$MYSQL_ROOT_PW; #루트 계정으로 로그인
+    mysql $MYSQL_DB -u$MYSQL_USER -p$MYSQL_PW; #루트 계정으로 로그인
     touch /var/lib/mysql/.setup;
 fi
 
