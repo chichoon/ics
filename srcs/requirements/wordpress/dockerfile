@@ -6,6 +6,9 @@ RUN apt-get update -y && apt-get upgrade -y && \
 	wget "http://wordpress.org/latest.tar.gz" && \
 	tar -xvzf latest.tar.gz
 
+COPY ./tools/setup.sh ./
+COPY ./conf/wp-config.php ./
+
 # php: wordpress를 실질적으로 구동시키는 언어
 #	데이터베이스에서 정보를 가져오고, HTML 페이지로 구성하는 등의 행동을 함
 # wget: 웹에서 wordpress 내려받기용 web get 프로그램
