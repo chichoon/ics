@@ -12,7 +12,7 @@ echo "                       _       _____  ____
 service mysql start;
 # MySQL 서비스 시작 (mariaDB는 MySQL의 포크판)
 
-cat /var/lib/mysql/.setup 2> /dev/null;
+cat /var/lib/mysql/.setup &> /dev/null;
 # /var/lib/mysql 폴더 (볼륨) 에 .setup 파일이 있을 경우 에러 X
 # .setup 파일이 존재하지 않을 경우 에러 발생 => 내용물은 쓰레기통으로
 # 그와 함께 $? errno에 값이 설정됨
