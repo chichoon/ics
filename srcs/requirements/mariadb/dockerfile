@@ -10,4 +10,4 @@ EXPOSE 3306
 
 RUN chmod 777 ./setup.sh
 
-CMD ["sh", "-c", "./setup.sh"]
+CMD ["bash", "-c", "./setup.sh"]

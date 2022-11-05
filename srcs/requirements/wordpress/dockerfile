@@ -13,7 +13,7 @@ EXPOSE 9000
 
 RUN chmod 777 ./setup.sh
 
-CMD ["sh", "-c", "./setup.sh"]
+CMD ["bash", "-c", "./setup.sh"]
 
 # php: wordpress를 실질적으로 구동시키는 언어
 #	데이터베이스에서 정보를 가져오고, HTML 페이지로 구성하는 등의 행동을 함
