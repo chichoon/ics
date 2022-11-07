@@ -6,6 +6,7 @@
 # 따라서 pid 1을 종료하면 하위에 있는 모든 프로세스가 같이 종료된다는 뜻
 # 만약 어떤 프로세스가 pid 1 하위 프로세스로 들어가있지 않으면, 마지막에 pid 1 프로세스가 종료되어도 좀비 프로세스로 남는다
 # https://cloud.google.com/architecture/best-practices-for-building-containers?hl=ko#problem_1_how_the_linux_kernel_handles_signals
+# 도커파일에서 CMD, ENTRYPOINT로 등록한 명령어는 PID 1번 프로세스로 실행된다
 
 services:
   # 서비스의 이름
