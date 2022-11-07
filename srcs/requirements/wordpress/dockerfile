@@ -1,19 +1,24 @@
 # wordpress cli 를 쓰세요
 FROM debian:buster
 
-# https://www.lesstif.com/system-admin/wordpress-command-line-wp-cli-128122908.html
 RUN apt-get update -y && apt-get upgrade -y && \
 	apt-get -y install wget tar php7.3-fpm php7.3-mysql && \
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	mv wp-cli.phar /usr/bin/ && \
 	chmod -x /usr/bin/wp-cli.phar
 
+# https://www.lesstif.com/system-admin/wordpress-command-line-wp-cli-128122908.html
+# wordpress cli 설치 후 폴더이동 및 권한설정
+
 COPY ./tools/setup.sh ./
-COPY ./conf/wp-config.php ./
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE 9000
 
-RUN chmod 777 ./setup.sh
+RUN mkdir -p /run/php && \
+	chmod 777 ./setup.sh
+
+# 필요한 경우 상위 경로까지 생성
 
 CMD ["bash", "-c", "./setup.sh"]
 
