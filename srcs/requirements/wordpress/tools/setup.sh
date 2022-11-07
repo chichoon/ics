@@ -15,3 +15,4 @@ do
 done
 # mariadb 로그인에 실패할 경우 sleep 1
 # &> 은 오류 (stderr) 를 리디렉션한다
+# until 은 while ! 와 같으며, 조건문 내의 조건을 만족하기 전까지 반복한다
