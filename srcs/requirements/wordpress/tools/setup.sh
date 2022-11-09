@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/18 23:01:05 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/18 23:17:44 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,18 @@ chown -R www-data:www-data /var/www/
 
 if [ ! -f "/var/www/html/wordpress/index.php" ]; then # index.php가 존재하지 않을 때 => wp 설치 및 초기화가 안 되어 있을 때만 새로 설치
 	sudo -u www-data sh -c " \
-    wp core download && \
+    wp core download --locale=en_US && \
     wp config create --dbname=$MYSQL_DB --dbhost=$MYSQL_HOST --dbuser=$MYSQL_USER --dbpass=$MYSQL_PW && \
+    wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin-user=$WP_ADMIN --admin_password=$WP_ADMIN_PW --admin_email=$WP_EMAIL && \
     wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS && \
 
-	" # 이상의 명령을 sh에서 www-data 유저로 수행 (sudo -u [유저명] sh -c)
+	"
 fi
+# 이상의 명령을 sh에서 www-data 유저로 수행 (sudo -u [유저명] sh -c)
+# wp core download: 워드프레스 파일을 서버에서 다운로드 (내려받기만)
+# wp config create: wp-config.php 파일 생성 (플래그를 통해 환경변수를 지정)
+# wp core install: 다운로드한 워드프레스 파일과 위에서 설정한 config 파일을 바탕으로 워드프레스 설치 및 설정
+# wp user create: 워드프레스 유저 생성
 
 exec /usr/sbin/php-fpm7.3 -F # nodaemonize, Foreground에서 실행시키는 옵션
 # nginx와 마찬가지로 포어그라운드에서 돌려야 한다 (백그라운드에서 돌리면 스크립트가 끝난 줄 알고 도커가 컨테이너를 off 시킴)
