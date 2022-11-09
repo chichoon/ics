@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/18 23:17:44 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/18 23:17:52 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,7 @@ if [ ! -f "/var/www/html/wordpress/index.php" ]; then # index.php가 존재하�
     wp core download --locale=en_US && \
     wp config create --dbname=$MYSQL_DB --dbhost=$MYSQL_HOST --dbuser=$MYSQL_USER --dbpass=$MYSQL_PW && \
     wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin-user=$WP_ADMIN --admin_password=$WP_ADMIN_PW --admin_email=$WP_EMAIL && \
-    wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS && \
-
+    wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS
 	"
 fi
 # 이상의 명령을 sh에서 www-data 유저로 수행 (sudo -u [유저명] sh -c)
