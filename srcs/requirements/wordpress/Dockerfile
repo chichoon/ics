@@ -17,7 +17,7 @@ RUN apt-get update -y && apt-get upgrade -y && \
 	apt-get -y install wget tar php7.3-fpm php7.3-mysql && \
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	mv wp-cli.phar /usr/bin/ && \
-	chmod -x /usr/bin/wp-cli.phar
+	chmod +x /usr/bin/wp-cli.phar
 
 # https://www.lesstif.com/system-admin/wordpress-command-line-wp-cli-128122908.html
 # wordpress cli 설치 후 폴더이동 및 권한설정
