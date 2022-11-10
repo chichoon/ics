@@ -1,4 +1,3 @@
-#!/bin/bash
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -11,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+#!/bin/bash
+
 echo " __        __            _ ____
  \\ \\      / /__  _ __ __| |  _ \\ _ __ ___  ___ ___
   \ \ /\ / / _ \| '__/ _' | |_) | '__/ _ \/ __/ __|
@@ -19,9 +20,9 @@ echo " __        __            _ ____
 
 "
 
-until mariadb -u$MYSQL_USER -p$MYSQL_PW &> /dev/null
-do
+until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW &> ./test ; do
 	echo "waiting for MariaDB to be on..."
+    cat ./test
 	sleep 1
 done
 
