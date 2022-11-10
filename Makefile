@@ -12,20 +12,25 @@
 
 # 도커 컴포즈를 돌리는 Makefile
 
+all: up
 
-kill:
-	cd srcs && docker-compose kill
-
-build:
-	cd srcs && docker-compose up
+up:
+	mkdir -p /home/jiychoi/data/wordpress
+	mkdir -p /home/jiychoi/data/mariadb
+	docker-compose -f ./srcs/docker-compose.yml up --build
 
 down:
-	cd srcs && docker-compose down
+	docker-compose -f ./srcs/docker-compose.yml down
 
-fclean:
+clean:
 	docker stop $(shell docker ps -qa); docker rm $(shell docker ps -qa);
 	docker rmi -f $(shell docker images -qa); docker volume rm $(shell docker volume ls -q);
-	docker network rm $(shell docker network ls -q) 2>/dev/null;
+	docker network rm $(shell docker network ls -q) 2>/dev/null
+
+fclean:
+	rm -rf /home/jiychoi/data/wordpress/*
+	rm -rf /home/jiychoi/data/mysql/*
+
 
 
 re: fclean build
