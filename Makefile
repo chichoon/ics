@@ -29,7 +29,7 @@ clean:
 
 fclean: clean
 	rm -rf /home/jiychoi/data/wordpress/*
-	rm -rf /home/jiychoi/data/mysql/*
+	rm -rf /home/jiychoi/data/mariadb/*
 
 
 
