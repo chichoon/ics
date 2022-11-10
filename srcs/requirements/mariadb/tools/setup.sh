@@ -19,6 +19,7 @@ echo "                       _       _____  ____
  |_| |_| |_|\__,_|_|  |_|\__,_|_____/|____/
 
 "
+chown -R mysql:mysql /var/lib/mysql; # /var/lib/mysql (mysql 설치 경로) 에 mysql 유저 (mysql 그룹) 에 대한 권한 부여
 
 service mysql start;
 # MySQL 서비스 시작 (mariaDB는 MySQL의 포크판)
@@ -39,4 +40,4 @@ if [ $? -ne 0 ]; then # $?이 0이 아닐 경우 (not equal) => 에러가 났다
     touch /var/lib/mysql/.setup;
 fi
 
-exec mysqld --console
+exec mysqld --console;
