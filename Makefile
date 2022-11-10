@@ -27,7 +27,7 @@ clean:
 	docker rmi -f $(shell docker images -qa); docker volume rm $(shell docker volume ls -q);
 	docker network rm $(shell docker network ls -q) 2>/dev/null
 
-fclean:
+fclean: clean
 	rm -rf /home/jiychoi/data/wordpress/*
 	rm -rf /home/jiychoi/data/mysql/*
 
