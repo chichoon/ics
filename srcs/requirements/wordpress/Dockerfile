@@ -14,8 +14,9 @@
 FROM debian:buster
 
 RUN apt-get update -y && apt-get upgrade -y && \
-	apt-get -y install wget tar php7.3-fpm php7.3-mysql && \
-	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	apt-get -y install wget tar php7.3-fpm php7.3-mysql mariadb-client
+
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	mv wp-cli.phar /usr/bin/ && \
 	chmod +x /usr/bin/wp-cli.phar
 
