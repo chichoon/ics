@@ -23,16 +23,12 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 clean:
-	docker stop $(shell docker ps -qa); docker rm $(shell docker ps -qa);
-	docker rmi -f $(shell docker images -qa); docker volume rm $(shell docker volume ls -q);
-	docker network rm $(shell docker network ls -q) 2>/dev/null
+	docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes
 
 fclean: clean
 	rm -rf /home/jiychoi/data/wordpress/*
 	rm -rf /home/jiychoi/data/mariadb/*
 
+re: fclean all
 
-
-re: fclean build
-
-.PHONY: kill build down
+.PHONY: all down clean fclean re
