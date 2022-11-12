@@ -26,18 +26,18 @@ services:
     volumes:
       - wordpress-volume:/var/www/html/wordpress # wordpress를 가져다 쓰기 위함
     depends_on:
-      - wordpress
+      - wordpress # wordpress 컨테이너 생성 후에 동작시키라는 뜻
     env_file:
-      - .env
+      - .env # 환경변수 들어있는 파일
     networks:
-      - inception-network
+      - inception-network # 네트워크 이름 -> 하나의 네트워크에 세 컨테이너가 모두 접속
   wordpress:
     build:
       context: ./requirements/wordpress
       dockerfile: ./Dockerfile
     restart: always
     expose:
-      - "3306" # 네트워크 내부에서의 접근 포트
+      - "9000" # 네트워크 내부에서의 접근 포트
       # expose 는 해당 네트워크 내의 서비스들끼리만 연결 가능
       # 네트워크 설정이 필요함
     volumes:
@@ -54,7 +54,7 @@ services:
       dockerfile: ./Dockerfile
     restart: always
     expose:
-      - "9000"
+      - "3306"
     volumes:
       - database-volume:/var/lib/mysql/ # mysql 설치되는 위치를 볼륨으로 설정 (데이터 유지 위함)
     env_file:
