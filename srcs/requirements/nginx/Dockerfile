@@ -56,7 +56,7 @@ COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 443
 # Docker-compose에서의 ports는 도커파일 포트와 로컬 포트를 연결, 여기서는 도커파일 포트를 OPEN
 
-RUN chmod 777 ./setup.sh
+RUN chmod +x ./setup.sh
 
 CMD ["bash", "-c", "./setup.sh"]
 # 이미지 빌드 후 바로 setup.sh 실행

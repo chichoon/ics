@@ -20,6 +20,6 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 EXPOSE 3306
 
-RUN chmod 777 ./setup.sh
+RUN chmod +x ./setup.sh
 
 CMD ["bash", "-c", "./setup.sh"]

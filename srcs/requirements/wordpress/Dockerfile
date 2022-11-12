@@ -29,7 +29,7 @@ COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 EXPOSE 9000
 
 RUN mkdir -p /run/php && \
-	chmod 777 ./setup.sh
+	chmod +x ./setup.sh
 
 # 필요한 경우 상위 경로까지 생성
 
