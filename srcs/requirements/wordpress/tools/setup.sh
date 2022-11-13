@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/21 16:44:37 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 17:12:06 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,12 @@ echo " __        __            _ ____
 
 "
 
-until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> /dev/null ; do
-	echo "waiting for MariaDB to be on..."
-	sleep 1
-done
+# until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> /dev/null ; do
+# 	echo "waiting for MariaDB to be on..."
+# 	sleep 1
+# done
+
+sleep 3
 
 # mariadb 로그인에 실패할 경우 sleep 1
 # &> 은 오류 (stderr) 를 리디렉션한다
