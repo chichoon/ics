@@ -19,6 +19,7 @@ services:
     build:
       context: ./requirements/nginx # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile) 의 위치
       dockerfile: ./Dockerfile # 이 서비스를 빌드하기 위한 설정 파일 (Dockerfile)
+    image: nginx
     restart: always # 컨테이너 오류로 종료 시 재시작
     ports: # 왼쪽이 host, 오른쪽이 guest, 두 개를 연결해줌 (포트포워딩)
       # ports는 바깥에서도 접근이 가능함
@@ -35,6 +36,7 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: ./Dockerfile
+    image: wordpress
     restart: always
     expose:
       - "9000" # 네트워크 내부에서의 접근 포트
@@ -52,6 +54,7 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: ./Dockerfile
+    image: mariadb
     restart: always
     expose:
       - "3306"
