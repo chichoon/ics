@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    dockerfile                                         :+:      :+:    :+:    #
+#    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:53 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/18 10:59:54 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 15:45:04 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 # setup 파일과 configuration 파일 복사
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-	chmod +x /usr/bin/wp-cli.phar && mv wp-cli.phar /usr/bin/wp
+	chmod +x wp-cli.phar && mv wp-cli.phar /usr/bin/wp
 # wp 로 경로변경해야 명령어 인식함, chmod를 미리 해주어야 동작
 
 # https://www.lesstif.com/system-admin/wordpress-command-line-wp-cli-128122908.html
