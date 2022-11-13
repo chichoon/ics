@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/21 16:32:51 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 16:37:20 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,8 @@ echo " __        __            _ ____
 
 "
 
-until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> ./test ; do
+until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> ./dev/null ; do
 	echo "waiting for MariaDB to be on..."
-    cat ./test
 	sleep 1
 done
 
@@ -38,7 +37,7 @@ if [ ! -f "/var/www/html/wordpress/index.php" ]; then # index.php가 존재하�
 	sudo -u www-data sh -c " \
     wp core download --locale=en_US && \
     wp config create --dbname=$MYSQL_DB --dbhost=$MYSQL_HOST --dbuser=$MYSQL_USER --dbpass=$MYSQL_PW && \
-    wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin-user=$WP_ADMIN --admin_password=$WP_ADMIN_PW --admin_email=$WP_EMAIL && \
+    wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PW --admin_email=$WP_EMAIL && \
     wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS
 	"
 fi
