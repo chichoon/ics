@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 01:23:19 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/03 19:35:28 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 16:03:38 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ all: up
 up:
 	mkdir -p /home/jiychoi/data/wordpress
 	mkdir -p /home/jiychoi/data/mariadb
+	sudo echo "127.0.0.1	jiychoi.42.fr" > /etc/hosts
 	docker-compose -f ./srcs/docker-compose.yml up --build
 
 down:
