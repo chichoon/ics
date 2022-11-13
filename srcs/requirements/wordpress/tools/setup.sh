@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/21 16:37:20 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 16:44:37 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ echo " __        __            _ ____
 
 "
 
-until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> ./dev/null ; do
+until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> /dev/null ; do
 	echo "waiting for MariaDB to be on..."
 	sleep 1
 done
