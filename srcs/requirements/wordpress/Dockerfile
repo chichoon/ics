@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:53 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/21 15:50:15 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 16:33:04 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ RUN mkdir -p /run/php && \
 EXPOSE 9000
 # 9000포트 열어주기
 
-CMD ["bash", "-c", "/setup.sh"]
+ENTRYPOINT ["sh", "-c", "/setup.sh"]
 
 # php: wordpress를 실질적으로 구동시키는 언어
 #	데이터베이스에서 정보를 가져오고, HTML 페이지로 구성하는 등의 행동을 함

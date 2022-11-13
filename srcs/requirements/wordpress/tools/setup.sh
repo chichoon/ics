@@ -6,11 +6,11 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 10:59:29 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/18 23:17:52 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 16:32:51 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#!/bin/bash
+#!/bin/sh
 
 echo " __        __            _ ____
  \\ \\      / /__  _ __ __| |  _ \\ _ __ ___  ___ ___
@@ -20,7 +20,7 @@ echo " __        __            _ ____
 
 "
 
-until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW &> ./test ; do
+until mariadb -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PW 2> ./test ; do
 	echo "waiting for MariaDB to be on..."
     cat ./test
 	sleep 1
