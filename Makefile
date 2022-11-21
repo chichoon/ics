@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 01:23:19 by jiychoi           #+#    #+#              #
-#    Updated: 2022/11/21 16:03:38 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/11/21 17:28:26 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ clean:
 
 fclean: clean
 	rm -rf /home/jiychoi/data/wordpress/*
+	rm -rf /home/jiychoi/data/mariadb/.setup
 	rm -rf /home/jiychoi/data/mariadb/*
+	rm -rf /home/jiychoi/data/mariadb/.setup
 
 re: fclean all
 
